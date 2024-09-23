@@ -21,35 +21,41 @@ luego solicita las puntuaciones de cada uno de ellos y usa la función calcularP
 para determinar la torta con el mayor puntaje.
 
 *Si lo consideran necesario, pueden implementar funciones extra.*/
-let concursantes: number = rs.questionInt("ingrese un numero de concursantes: ");
-let i: number;
-let sabor: number = 0;
-let presentacion: number = 0;
-let dificultad: number = 0;
 
+let concursantes: number = 0;
+
+while (concursantes <= 0) {
+
+   concursantes = rs.questionInt("ingrese un numero de concursantes: ");
+}
 let calcularPuntaje = (n1: number, n2: number, n3: number): number => {
-   let suma: number = 0;
-   if ((n1 >= 1 && n1 <= 5) && (n2 >= 1 && n2 <= 5) && (n3 >= 1 && n3 <= 5)) {
 
-      suma = n1 + n2 + n3;
-      return suma;
-   } else {
-      console.log("puntaje invalido");
-      return -1;
-   }
+   return n1 + n2 + n3;
+
 }
 
-
-
-let determinarGanador = (num1: number, num2: number, num3: number): string => {
+let determinarGanador = (jugador: number): string => {
    let ganador: string = " ";
    let porcentajeMax: number = 0;
-   for (i = 1; i <= concursantes; i++) {
-      num1 = rs.questionInt("ingrese puntaje del 1 al 5 por el sabor: " + "torta : " + i + " ");
-      num2 = rs.questionInt("ingrese puntaje del 1 al 5 por el presentacion: " + "torta : " + i + " ");
-      num3 = rs.questionInt("ingrese puntaje del 1 al 5 por el dificultad: " + "torta : " + i + " ");
-      let suma: number = calcularPuntaje(num1, num2, num3);
+   let suma: number = 0
 
+
+   for (let i: number = 1; i <= jugador; i++) {
+      let n1: number = 0, n2: number = 0, n3: number = 0;
+
+      while (!(n1 >= 1 && n1 <= 5)) {
+         n1 = rs.questionInt("ingrese puntaje del 1 al 5 por el sabor: " + "torta : " + i + " ");
+
+      }
+      while (!(n2 >= 1 && n2 <= 5)) {
+         n2 = rs.questionInt("ingrese puntaje del 1 al 5 por el presentacion: " + "torta : " + i + " ");
+
+      }
+      while (!(n3 >= 1 && n3 <= 5)) {
+         n3 = rs.questionInt("ingrese puntaje del 1 al 5 por el dificultad: " + "torta : " + i + " ");
+      }
+
+      suma = calcularPuntaje(n1, n2, n3);
       if (suma > porcentajeMax) {
          porcentajeMax = suma;
          ganador = "el ganador es el participante N° : " + i;
@@ -57,12 +63,14 @@ let determinarGanador = (num1: number, num2: number, num3: number): string => {
       }
       else if (suma == porcentajeMax) {
          ganador = "existe empate"
-
       }
+
    }
    return ganador;
 }
 
-let elganadorEs: string = determinarGanador(sabor, presentacion, dificultad);
+
+
+let elganadorEs: string = determinarGanador(concursantes);
 console.log(elganadorEs);
 
