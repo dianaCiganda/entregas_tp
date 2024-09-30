@@ -26,7 +26,6 @@ let concursantes: number = 0;
 let sabor: number = 0;
 let presentacion: number = 0.;
 let dificultad: number = 0;
-let hayEmpate: boolean = false;
 
 while (concursantes <= 0) {
 
@@ -69,7 +68,7 @@ let determinarGanador = (jugador: number): number | null => {
 
       }
       else if (puntajeTotal == porcentajeMax) {
-         hayEmpate = true;
+
          ganador = null;
 
       }
@@ -78,7 +77,7 @@ let determinarGanador = (jugador: number): number | null => {
 }
 
 let elGanadores: number | null = determinarGanador(concursantes);
-if (elGanadores !== null) {
+if (elGanadores != null) {
    console.log("El ganador es la torta número: " + elGanadores);
 } else {
    console.log("No hay un ganador claro debido a un empate.");
