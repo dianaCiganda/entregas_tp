@@ -53,8 +53,8 @@ function rangoPuntaje(n1: number, n2: number, n3: number, iterador: number): num
    suma = calcularPuntaje(n1, n2, n3);
    return suma
 }
-let determinarGanador = (jugador: number): number => {
-   let ganador: number = 0;
+let determinarGanador = (jugador: number): number|null => {
+   let ganador: number|null = 0;
    let porcentajeMax: number = 0;
    let puntajeTotal: number = 0;
 
@@ -70,13 +70,15 @@ let determinarGanador = (jugador: number): number => {
       }
       else if (puntajeTotal == porcentajeMax) {
          hayEmpate = true;
+         ganador=null;
 
       }
    }
    return ganador;
 }
 
-let elganadorEs: number = determinarGanador(concursantes);
-console.log("la torta ganadora es la torta N°: " + elganadorEs);
+let elGanadores:number|null=determinarGanador(concursantes);
+console.log("el ganador es: "+elGanadores);
+
 console.log("hay empate : " + hayEmpate);
 
