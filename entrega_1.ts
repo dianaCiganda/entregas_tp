@@ -43,7 +43,6 @@ function rangoPuntaje(n1: number, n2: number, n3: number, iterador: number): num
       n1 = rs.questionInt("ingrese puntaje del 1 al 5 por el sabor: ");
       n2 = rs.questionInt("ingrese puntaje del 1 al 5 por el presentacion : ");
       n3 = rs.questionInt("ingrese puntaje del 1 al 5 por el dificultad: ");
-
       if (!(n1 >= 1 && n1 <= 5) || !(n2 >= 1 && n2 <= 5) || !(n3 >= 1 && n3 <= 5)) {
 
          console.log("ha ingresado algun valor invalido vuelva a ingresar valores del 1 al 5");
