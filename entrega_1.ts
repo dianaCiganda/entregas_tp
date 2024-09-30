@@ -23,6 +23,10 @@ para determinar la torta con el mayor puntaje.
 *Si lo consideran necesario, pueden implementar funciones extra.*/
 
 let concursantes: number = 0;
+let sabor: number = 0;
+let presentacion: number = 0.;
+let dificultad: number = 0;
+let hayEmpate: boolean = false;
 
 while (concursantes <= 0) {
 
@@ -33,44 +37,47 @@ let calcularPuntaje = (n1: number, n2: number, n3: number): number => {
    return n1 + n2 + n3;
 
 }
-
-let determinarGanador = (jugador: number): string => {
-   let ganador: string = " ";
-   let porcentajeMax: number = 0;
+function rangoPuntaje(n1: number, n2: number, n3: number, iterador: number): number {
    let suma: number = 0
+   while (!(n1 >= 1 && n1 <= 5) || !(n2 >= 1 && n2 <= 5) || !(n3 >= 1 && n3 <= 5)) {
+      n1 = rs.questionInt("ingrese puntaje del 1 al 5 por el sabor: ");
+      n2 = rs.questionInt("ingrese puntaje del 1 al 5 por el presentacion : ");
+      n3 = rs.questionInt("ingrese puntaje del 1 al 5 por el dificultad: ");
+
+      if (!(n1 >= 1 && n1 <= 5) || !(n2 >= 1 && n2 <= 5) || !(n3 >= 1 && n3 <= 5)) {
+
+         console.log("ha ingresado algun valor invalido vuelva a ingresar valores del 1 al 5");
+         console.log("Torta : " + iterador);
+
+      }
+   }
+   suma = calcularPuntaje(n1, n2, n3);
+   return suma
+}
+let determinarGanador = (jugador: number): number => {
+   let ganador: number = 0;
+   let porcentajeMax: number = 0;
+   let puntajeTotal: number = 0;
 
 
    for (let i: number = 1; i <= jugador; i++) {
-      let n1: number = 0, n2: number = 0, n3: number = 0;
+      console.log("Torta : " + i);
 
-      while (!(n1 >= 1 && n1 <= 5)) {
-         n1 = rs.questionInt("ingrese puntaje del 1 al 5 por el sabor: " + "torta : " + i + " ");
-
-      }
-      while (!(n2 >= 1 && n2 <= 5)) {
-         n2 = rs.questionInt("ingrese puntaje del 1 al 5 por el presentacion: " + "torta : " + i + " ");
+      puntajeTotal = rangoPuntaje(sabor, presentacion, dificultad, i);
+      if (puntajeTotal > porcentajeMax) {
+         porcentajeMax = puntajeTotal;
+         ganador = i;
 
       }
-      while (!(n3 >= 1 && n3 <= 5)) {
-         n3 = rs.questionInt("ingrese puntaje del 1 al 5 por el dificultad: " + "torta : " + i + " ");
-      }
-
-      suma = calcularPuntaje(n1, n2, n3);
-      if (suma > porcentajeMax) {
-         porcentajeMax = suma;
-         ganador = "el ganador es el participante N° : " + i;
+      else if (puntajeTotal == porcentajeMax) {
+         hayEmpate = true;
 
       }
-      else if (suma == porcentajeMax) {
-         ganador = "existe empate"
-      }
-
    }
    return ganador;
 }
 
-
-
-let elganadorEs: string = determinarGanador(concursantes);
-console.log(elganadorEs);
+let elganadorEs: number = determinarGanador(concursantes);
+console.log("la torta ganadora es la torta N°: " + elganadorEs);
+console.log("hay empate : " + hayEmpate);
 
