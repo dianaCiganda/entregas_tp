@@ -80,5 +80,5 @@ let elGanadores: number | null = determinarGanador(concursantes);
 if (elGanadores != null) {
    console.log("El ganador es la torta número: " + elGanadores);
 } else {
-   console.log("No hay un ganador claro debido a un empate.");
+   console.log("No hay un ganador, hay empate.");
 }
