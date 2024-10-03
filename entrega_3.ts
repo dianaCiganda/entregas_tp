@@ -14,11 +14,11 @@ function howManyTextInPara(fullText: string, searchTerm: string): number {
         // El método indexOf() devuelve el índice, dentro del objeto String 
         // que realiza la llamada, de la primera ocurrencia del valor especificado,
         //  comenzando la búsqueda desde indiceDesde; o -1 si no se encuentra dicho valor.
-        let posicion:number= paragraph.indexOf(palabraBuscada);
+        let posicion:number= fullText.indexOf(searchTerm);
         while (posicion != -1) { //mientras se encuentre la palabra buscada
             contador++;           //incremento el contador
             //sigo buscando desde la posicion siguiente a la encontrada                                
-            posicion = paragraph.indexOf(palabraBuscada, posicion + 1);
+            posicion = fullText.indexOf(searchTerm, posicion + 1);
         }
         return contador;//retorno cuantas veces se encontró la palabra buscada
 }
